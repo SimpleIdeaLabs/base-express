@@ -1,7 +1,8 @@
-# base express
-### yet another typescript, express boilerplate
+# base-express
+yet another typescript, express boilerplate
 
-## basic set up
+## getting started
+
 - `cp example.env .env`
 - `yarn`
 - `yarn run build`
@@ -10,4 +11,4 @@
 - `docker-compose up`
 - `Update .env file accordingly`
 
-## use with base next
+## use with [base-next](https://github.com/SimpleIdeaLabs/base-next) 
