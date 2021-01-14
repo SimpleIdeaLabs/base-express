@@ -8,10 +8,10 @@ const rateLimiter = new RateLimiterMemory({
   duration: +RATE_LIMITER.BLOCKAGE_SECONDS,
 });
 
-export default(request: Request, res: Response, next: NextFunction) => {
+export default (request: Request, res: Response, next: NextFunction) => {
   rateLimiter.consume(request.ip, +RATE_LIMITER.POINTS_TO_CONSUME)
     .then(() => next())
-    .catch((error) => {
+    .catch(() => {
       return tooManyRequestResponse(res);
     });
 };

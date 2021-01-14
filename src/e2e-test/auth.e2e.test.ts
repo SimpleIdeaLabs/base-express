@@ -4,7 +4,7 @@ import supertest from 'supertest';
 describe('Auth e2e', () => {
 
   let server: supertest.SuperTest<supertest.Test>;
-  let token: string = '';
+  let token = '';
 
   beforeAll(async () => {
     server = await startServer();
@@ -55,7 +55,7 @@ describe('Auth e2e', () => {
 
   it('It should not get session with invalid token', async () => {
     const { status } = await server.get('/auth/get-current-session').set({
-      'Authorization': `Bearer invalid-token`
+      'Authorization': 'Bearer invalid-token'
     });
     expect(status).toBe(401);
   });

@@ -1,5 +1,5 @@
-import { Database } from "../common/components/database/database";
-import { Service } from "typedi";
+import { Database } from '../common/components/database/database';
+import { Service } from 'typedi';
 
 @Service()
 export class BaseService {

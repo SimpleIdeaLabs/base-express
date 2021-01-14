@@ -1,6 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { getManager, Not } from 'typeorm';
-import { Auth } from './auth.entity';
+import { Account } from './account.entity';
 
 export function IsMatch(property: string, validationOptions?: ValidationOptions) {
   return (object: any, propertyName: string) => {
@@ -24,7 +24,7 @@ export class MatchConstraint implements ValidatorConstraintInterface {
 }
 
 @ValidatorConstraint({ async: true })
-export class IsAuthEmailUniqueConstraint implements ValidatorConstraintInterface {
+export class IsAccountEmailUniqueConstraint implements ValidatorConstraintInterface {
   validate(email: any, args: ValidationArguments) {
     const params = args.object as any;
     const where = {
@@ -32,27 +32,27 @@ export class IsAuthEmailUniqueConstraint implements ValidatorConstraintInterface
     } as any;
 
     if (params.id) {
-      where.id =  Not(params.id);
+      where.id = Not(params.id);
     }
 
-    return getManager().findOne(Auth, {
+    return getManager().findOne(Account, {
       where
-    }).then(auth => {
-      if (auth) { return false; }
+    }).then(account => {
+      if (account) { return false; }
       return true;
     });
   }
 }
 
-export const IsAuthEmailUnique = (validationOptions?: ValidationOptions) => {
-  // tslint:disable-next-line: ban-types
+export const IsAccountEmailUnique = (validationOptions?: ValidationOptions) => {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   return (object: Object, propertyName: string) => {
     registerDecorator({
       target: object.constructor,
       propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsAuthEmailUniqueConstraint,
+      validator: IsAccountEmailUniqueConstraint,
     });
   };
 };

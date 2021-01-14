@@ -12,8 +12,8 @@ loginError.constraints = {
   'isRoleValid': 'Role not found'
 };
 
-export const authError = new ValidationError();
+export const accountError = new ValidationError();
 loginError.property = 'email';
 loginError.constraints = {
-  'isAuthAccountValid': 'Auth not found'
+  'isAccountValid': 'Account not found'
 };

@@ -30,24 +30,16 @@ export class Database {
 
   public disconnect = async () => {
     if (this.connection.isConnected) {
-      try {
-        this.connection.close();
-      } catch (error) {
-        throw error;
-      }
+      this.connection.close();
     }
   }
 
   public reset = async () => {
-    try {
-      if (isProduction()) {
-        return;
-      }
-      for (const meta of this.connection.entityMetadatas) {
-        await this.connection.manager.delete(meta.name, {});
-      }
-    } catch (error) {
-      throw error;
+    if (isProduction()) {
+      return;
+    }
+    for (const meta of this.connection.entityMetadatas) {
+      await this.connection.manager.delete(meta.name, {});
     }
   }
 

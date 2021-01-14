@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { IPaginationParams } from '../../common/dtos/pagination.dto';
-import { IsMatch, IsAuthEmailUnique } from './auth.validators';
+import { IsMatch, IsAccountEmailUnique } from './account.validators';
 
 export class ILoginParams {
 
@@ -14,11 +14,11 @@ export class ILoginParams {
 
 }
 
-export class ICreateAuthParams {
+export class ICreateAccountParams {
 
   @IsNotEmpty()
   @IsString()
-  @IsAuthEmailUnique({
+  @IsAccountEmailUnique({
     message: 'Email already in use'
   })
   email: string;
@@ -40,7 +40,7 @@ export class ICreateAuthParams {
 
 }
 
-export class IUpdateAuthParams {
+export class IUpdateAccountParams {
 
   @IsNotEmpty()
   @IsNumber()
@@ -48,7 +48,7 @@ export class IUpdateAuthParams {
 
   @IsNotEmpty()
   @IsString()
-  @IsAuthEmailUnique({
+  @IsAccountEmailUnique({
     message: 'Email already in use'
   })
   email: string;
@@ -70,10 +70,10 @@ export class IUpdateAuthParams {
 
 }
 
-export class IReadAuthParams {
+export class IReadAccountParams {
   @IsNotEmpty()
   @IsNumber()
   userId: number;
 }
 
-export class IListAuthParams extends IPaginationParams {}
+export class IListAccountParams extends IPaginationParams {}

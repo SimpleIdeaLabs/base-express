@@ -35,6 +35,6 @@ export const RATE_LIMITER = {
 export const MONGO_DB = process.env.MONGO_DB;
 
 /**
- * JWT Signiture
+ * JWT Signature
  */
 export const JWT_SIGNATURE = process.env.JWT_SIGNATURE || '12345';

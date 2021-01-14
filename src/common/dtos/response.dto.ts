@@ -1,7 +1,7 @@
-import { ValidationError } from "class-validator";
+import { ValidationError } from 'class-validator';
 import { IPaginationResponse } from '../dtos/pagination.dto';
 
-export class IResponse {
+export class IResponse<T> {
 
   status: boolean;
 
@@ -11,11 +11,11 @@ export class IResponse {
 
   message?: string;
 
-  data?: any;
+  data?: T;
 
 }
 
-export class IPaginatedResponse extends IResponse {
+export class IPaginatedResponse<T> extends IResponse<T> {
 
   pagination?: IPaginationResponse;
 

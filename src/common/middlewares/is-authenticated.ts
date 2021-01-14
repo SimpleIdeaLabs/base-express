@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { JWT_SIGNATURE } from '../configs/env.conf';
-import { serverErrorResponse, unathorizedResponse } from '../responses/responses';
+import { serverErrorResponse, unauthorizedResponse } from '../responses/responses';
 
 export default async (request: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,23 +9,26 @@ export default async (request: Request, res: Response, next: NextFunction) => {
 
     // Check Authorization Header
     if (!headers.authorization) {
-      return unathorizedResponse(res);
+      return unauthorizedResponse(res);
     }
 
-    // Validate Authorization Header
+    // Validate Authorization Header  
     const { authorization } = headers;
-    const splittedAuthorization = authorization.split('Bearer');
-    if (splittedAuthorization.length <= 1) {
-      return unathorizedResponse(res);
+    const splitAuthorization = authorization.split('Bearer');
+    if (splitAuthorization.length <= 1) {
+      return unauthorizedResponse(res);
     }
 
     // Verify Token
-    const token = splittedAuthorization[1].trim();
+    const token = splitAuthorization[1].trim();
     try {
       const decoded = await jwt.verify(token, JWT_SIGNATURE);
-      (request as any).user = decoded;
+
+      // TODO verify backend
+
+      request.user = decoded;
     } catch (error) {
-      return unathorizedResponse(res);
+      return unauthorizedResponse(res);
     }
 
     await next();

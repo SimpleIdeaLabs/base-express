@@ -1,8 +1,8 @@
 import { Response } from 'express';
 import { IResponse } from '../dtos/response.dto';
 
-export const unathorizedResponse = (response: Response) => {
-  const res: IResponse = {
+export const unauthorizedResponse = (response: Response) => {
+  const res: IResponse<any> = {
     status: false,
     message: 'Unathorized'
   };
@@ -11,7 +11,7 @@ export const unathorizedResponse = (response: Response) => {
 };
 
 export const serverErrorResponse = (response: Response) => {
-  const res: IResponse = {
+  const res: IResponse<any> = {
     status: false,
     message: 'Server Error'
   };
@@ -20,7 +20,7 @@ export const serverErrorResponse = (response: Response) => {
 };
 
 export const tooManyRequestResponse = (response: Response) => {
-  const res: IResponse = {
+  const res: IResponse<any> = {
     status: false,
     message: 'Too Many Requests'
   };

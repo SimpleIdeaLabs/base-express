@@ -9,3 +9,5 @@ export enum ENV {
     UAT = 'UAT',
     PRODUCTION = 'PRODUCTION',
 }
+
+export const IMAGE_FILES_PATH = '/static/images';

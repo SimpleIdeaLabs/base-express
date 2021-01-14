@@ -9,8 +9,8 @@ export const getDefaultTransports = (logger: string) => {
 
   if (!isProduction()) {
     defaultTransports.push(
-       // tslint:disable-next-line:no-string-literal
-       new mongoDbTransports['MongoDB']({
+      // tslint:disable-next-line:no-string-literal
+      new mongoDbTransports['MongoDB']({
         db: MONGO_DB,
         collection: `${logger}_logs`,
         capped: false

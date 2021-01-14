@@ -3,10 +3,7 @@ import { Database } from '../database';
 import appLogger from '../../logger/app-logger';
 import { Role } from '../../../../components/roles/role.entity';
 import { SUPPORTED_ROLES } from '../../../../components/roles/role.constants';
-
-interface IStartSeedParams {
-  forced: boolean;
-}
+import { IStartSeedParams } from './seeding.dtos';
 
 @Service()
 export class RoleSeeding {
@@ -32,6 +29,14 @@ export class RoleSeeding {
     const superAdminRole = new Role();
     superAdminRole.name = SUPPORTED_ROLES.SUPER_ADMIN;
     roles.push(superAdminRole);
+
+    const groupOrgRole = new Role();
+    groupOrgRole.name = SUPPORTED_ROLES.GROUP_ADMIN;
+    roles.push(groupOrgRole);
+
+    const serviceProviderRole = new Role();
+    serviceProviderRole.name = SUPPORTED_ROLES.SERVICE_PROVIDER;
+    roles.push(serviceProviderRole);
 
     await this.db.sqlManager.save(roles);
 

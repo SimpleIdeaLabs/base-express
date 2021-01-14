@@ -16,49 +16,37 @@ export class RoleService extends BaseService {
     super(database);
   }
 
-  public list = async (params: IListRolesParams): Promise<IResponse | IPaginatedResponse> => {
-    try {
-      if (params.limit && params.page) {
-        return this.paginatedList(params);
-      }
-      const roles = await this.database.sqlManager.find(Role);
-      return {
-        data: roles,
-        status: true
-      };
-    } catch (error) {
-      throw error;
+  public list = async (params: IListRolesParams): Promise<IResponse<Role[]> | IPaginatedResponse<Role[]>> => {
+    if (params.limit && params.page) {
+      return this.paginatedList(params);
     }
+    const roles = await this.database.sqlManager.find(Role);
+    return {
+      data: roles,
+      status: true
+    };
   }
 
-  public paginatedList = async (params: IListRolesParams): Promise<IPaginatedResponse> => {
-    try {
-      const { page, limit } = params;
-      const total = await this.total();
-      const roles = await this.database.sqlManager.find(Role, {
-        skip: this.paginationService.skip(page, limit),
-        take: limit
-      });
-      return {
-        data: roles,
-        status: true,
-        pagination: {
-          currentPage: page,
-          total
-        }
-      };
-    } catch (error) {
-      throw error;
-    }
+  public paginatedList = async (params: IListRolesParams): Promise<IPaginatedResponse<Role[]>> => {
+    const { page, limit } = params;
+    const total = await this.total();
+    const roles = await this.database.sqlManager.find(Role, {
+      skip: this.paginationService.skip(page, limit),
+      take: limit
+    });
+    return {
+      data: roles,
+      status: true,
+      pagination: {
+        currentPage: page,
+        total
+      }
+    };
   }
 
   public total = async () => {
-    try {
-      const count = await this.database.sqlManager.count(Role);
-      return count;
-    } catch (error) {
-      throw error;
-    }
+    const count = await this.database.sqlManager.count(Role);
+    return count;
   }
 
 }
