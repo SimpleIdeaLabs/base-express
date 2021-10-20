@@ -44,7 +44,7 @@ export class AccountController extends BaseController implements IBaseController
 
   private getSession = async (req: Request, res: Response) => {
     try {
-      res.json({ user: (req as any).user});
+      res.json({ user: (req as any).user });
     } catch (error) {
       this.serverError(res, { meta: error });
     }
@@ -86,7 +86,7 @@ export class AccountController extends BaseController implements IBaseController
 
   private update = async (req: Request, res: Response) => {
     try {
-      const { body, params: { userId }, user  } = req;
+      const { body, params: { userId }, user } = req;
       if (!user) throw new Error('User is not defined');
       const params = await plainToClass(IUpdateAccountParams, { ...body, id: +userId });
       const response = await this.accountService.update(params, user);
