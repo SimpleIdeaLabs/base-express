@@ -49,10 +49,13 @@ export class App implements IApp {
     this.instance.use(IMAGE_FILES_PATH, express.static(`${appRootPath}/public/images`));
 
     // api routes
-    this.instance.use(account.router);
-    this.instance.use(role.router);
-    this.instance.use(organization.router);
-    this.instance.use(organizationRoles.router);
+    const apiV1Router = Router();
+    apiV1Router.use(account.router);
+    apiV1Router.use(role.router);
+    apiV1Router.use(organization.router);
+    apiV1Router.use(organizationRoles.router);
+
+    this.instance.use('/api/v1', apiV1Router);
   }
 
 }
