@@ -1,18 +1,10 @@
-# base-express
+# base-frontend-ejs-express
 
-- boilerplate for express backend
+- boilerplate for frontend using ejs served by express
 
 ## getting started
 
 - `cp example.env .env`
 - `yarn`
 - `yarn run build`
-
-## running with docker
-
-- `docker-compose up`
-- `Update .env file accordingly`
-
-## accessing api
-
-- access `http://localhost:3001/test` to verify
+- `yarn runw watch-debug`

@@ -5,12 +5,10 @@ import cors from 'cors';
 import rateLimit from './common/middlewares/rate-limiter';
 import apiLogger from './common/middlewares/api-logger';
 import { Service } from 'typedi';
-import account from './components/account/account.ctrl';
-import role from './components/roles/role.ctrl';
-import organization from './components/organizations/organization.ctrl';
-import organizationRoles from './components/organizationRoles/organizationRole.ctrl';
 import appRootPath from 'app-root-path';
 import { IMAGE_FILES_PATH } from './common/constants/constants';
+import accountCtrl from './components/account/account.ctrl';
+import dashboardCtrl from './components/dashboard/dashboard.ctrl';
 
 interface IApp {
   instance: Application;
@@ -41,18 +39,17 @@ export class App implements IApp {
   registerRoutes() {
     const router = Router();
     router.get('/test', (request: Request, response: Response) => {
-      response.json({ great: 'work' });
+      response.json({ great: 'work ' });
     });
+
     this.instance.use(router);
 
     // static routes
     this.instance.use(IMAGE_FILES_PATH, express.static(`${appRootPath}/public/images`));
 
-    // api routes
-    this.instance.use(account.router);
-    this.instance.use(role.router);
-    this.instance.use(organization.router);
-    this.instance.use(organizationRoles.router);
+    // routers
+    this.instance.use(accountCtrl.router);
+    this.instance.use(dashboardCtrl.router);
   }
 
 }

@@ -1,7 +1,7 @@
 import { BaseController, IBaseController } from '../../core/base-ctrl';
 import { Request, Response } from 'express';
 
-export class AccountController extends BaseController implements IBaseController {
+export class DashboardController extends BaseController implements IBaseController {
 
   constructor() {
     super();
@@ -9,12 +9,12 @@ export class AccountController extends BaseController implements IBaseController
   }
 
   registerRoutes(): void {
-    this.router.get('/accounts/login', this.login);
+    this.router.get('/dashboard', this.index);
   }
 
-  private login = async (req: Request, res: Response) => {
+  private index = async (req: Request, res: Response) => {
     try {
-      res.render('pages/login/login');
+      res.render('pages/dashboard/dashboard');
     } catch (error) {
       this.serverError(res, { meta: error });
     }
@@ -22,4 +22,4 @@ export class AccountController extends BaseController implements IBaseController
 
 }
 
-export default new AccountController();
+export default new DashboardController();

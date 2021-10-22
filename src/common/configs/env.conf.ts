@@ -28,13 +28,3 @@ export const RATE_LIMITER = {
     MAX_POINTS: process.env.RATE_MAX_POINTS || 5,
     BLOCKAGE_SECONDS: process.env.RATE_BLOCKAGE_SECONDS || 2
 };
-
-/**
- * MongoDB
- */
-export const MONGO_DB = process.env.MONGO_DB;
-
-/**
- * JWT Signature
- */
-export const JWT_SIGNATURE = process.env.JWT_SIGNATURE || '12345';

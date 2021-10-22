@@ -1,0 +1,114 @@
+Arguments: 
+  /Users/markernestmatute/.nvm/versions/node/v14.18.0/bin/node /Users/markernestmatute/.nvm/versions/node/v14.18.0/bin/yarn
+
+PATH: 
+  /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin:/opt/local/bin:/opt/local/sbin:/Users/markernestmatute/.nvm/versions/node/v14.18.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin:/Users/markernestmatute/.yarn/bin:/Users/markernestmatute/.config/yarn/global/node_modules/.bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Users/markernestmatute/Library/Android/sdk/emulator:/Users/markernestmatute/Library/Android/sdk/tools:/Users/markernestmatute/Library/Android/sdk/tools/bin:/Users/markernestmatute/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  14.18.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@typescript-eslint%2feslint-plugin: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/Users/markernestmatute/.nvm/versions/node/v14.18.0/lib/node_modules/yarn/lib/cli.js:141512:19)
+      at Object.onceWrapper (events.js:519:28)
+      at ClientRequest.emit (events.js:400:28)
+      at TLSSocket.emitRequestTimeout (_http_client.js:790:9)
+      at Object.onceWrapper (events.js:519:28)
+      at TLSSocket.emit (events.js:412:35)
+      at TLSSocket.Socket._onTimeout (net.js:495:8)
+      at listOnTimeout (internal/timers.js:557:17)
+      at processTimers (internal/timers.js:500:7)
+
+npm manifest: 
+  {
+    "name": "base-express",
+    "engines": {
+      "node": ">=12",
+      "npm": "please-use-yarn",
+      "yarn": ">=1.15.0"
+    },
+    "version": "1.0.0",
+    "main": "dist/server.js",
+    "author": "Mark Ernest Matute <markernest.matute@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+      "@types/app-root-path": "1.2.4",
+      "@types/bcrypt": "^3.0.0",
+      "@types/cors": "^2.8.6",
+      "@types/express": "^4.17.6",
+      "@types/helmet": "^0.0.46",
+      "@types/jest": "^25.2.1",
+      "@types/jsonwebtoken": "^8.5.0",
+      "@types/multer": "1.4.4",
+      "@types/node": "^13.13.5",
+      "@types/supertest": "^2.0.9",
+      "@types/winston": "^2.4.4",
+      "@typescript-eslint/eslint-plugin": "^4.13.0",
+      "@typescript-eslint/parser": "^4.13.0",
+      "concurrently": "^5.2.0",
+      "eslint": "^7.17.0",
+      "husky": "^4.3.7",
+      "jest": "^26.0.1",
+      "lint-staged": "^10.5.3",
+      "nodemon": "^2.0.3",
+      "supertest": "^4.0.2",
+      "ts-node": "^8.10.1",
+      "typescript": "^3.8.3"
+    },
+    "scripts": {
+      "start": "npm run serve",
+      "build": "npm run build-ts",
+      "serve": "node dist/server.js",
+      "watch-node": "nodemon dist/server.js",
+      "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+      "test:e2e": "tsc && jest e2e --verbose",
+      "watch-test": "npm run test -- --watchAll",
+      "build-ts": "tsc",
+      "watch-ts": "tsc -w",
+      "copy-static-assets": "ts-node copyStaticAssets.ts",
+      "debug": "npm run build && npm run watch-debug",
+      "serve-debug": "nodemon --inspect=0.0.0.0:9229 dist/server.js",
+      "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+      "seed": "node dist/common/scripts/seeding.js",
+      "lint": "eslint . --ext .ts",
+      "lint-fix": "eslint . --ext .ts --fix",
+      "precommit": "lint-staged"
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "yarn run lint"
+      }
+    },
+    "dependencies": {
+      "@types/lodash": "^4.14.175",
+      "@types/ejs": "^3.1.0",
+      "app-root-path": "3.0.0",
+      "bcrypt": "^4.0.1",
+      "cors": "^2.8.5",
+      "dotenv": "^8.2.0",
+      "ejs": "^3.1.6",
+      "express": "^4.17.1",
+      "express-winston": "^4.0.3",
+      "helmet": "^3.22.0",
+      "jsonwebtoken": "^8.5.1",
+      "lodash": "^4.17.21",
+      "multer": "1.4.2",
+      "rate-limiter-flexible": "^2.1.4",
+      "reflect-metadata": "^0.1.13",
+      "typedi": "^0.8.0",
+      "winston": "^3.2.1",
+      "winston-mongodb": "4.0.9"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

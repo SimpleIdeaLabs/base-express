@@ -1,22 +1,19 @@
 import 'reflect-metadata';
+import express from 'express';
 import { Container } from 'typedi';
-import { Database } from './common/components/database/database';
 import { App } from './app';
 import appLogger from './common/components/logger/app-logger';
-import { Seeding } from './common/components/database/seeding/seeding';
 
-const dbContainer = Container.get(Database);
 const appContainer = Container.get(App);
-const seedContainer = Container.get(Seeding);
 
 (async () => {
   try {
-    // Database
-    await dbContainer.connect();
-    await seedContainer.start();
 
     // Server
     const appInstance = appContainer.instance;
+    appInstance.use(express.static('public'));
+    appInstance.set('view engine', 'ejs');
+
     const PORT = appInstance.get('PORT');
     await appInstance.listen(PORT);
     appLogger.info(`Server running - ${PORT}`);

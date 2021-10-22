@@ -3,4 +3,4 @@ dist/
 .data/
 .env
 Close
-public/
+public/js/config.js
