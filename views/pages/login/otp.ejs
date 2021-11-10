@@ -1,0 +1,43 @@
+<%- include('../../components/header', {
+  services: [
+    'account'
+  ],
+  thirdParty: [
+    '/crypto-js/crypto-js.js'
+  ]
+}) %>
+<%- include('../../components/navbar') %>
+
+<style>
+  .loginContainer {
+    margin-top: 50px;
+  }
+</style>
+
+<div class="container loginContainer">
+ <div class="row  justify-content-center">
+  <div class="col col-lg-4 col-md-8 col-xs-12">
+    <div class="card  align-middle">
+      <div class="card-body">
+        <div class="row ">
+          <div class="col mb-2">
+            <label for="txtOtp" class="form-label">OTP</label>
+            <input class="form-control" type="password" id="txtOtp"></input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-2">
+            <button type="button" id='btnVerifyOtp' class="btn btn-primary">Verify OTP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+
+<%- include('../../components/footer', {
+  scripts: [
+    'login/otp.js'
+  ]
+}) %>

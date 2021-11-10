@@ -1,4 +1,11 @@
-<%- include('../../components/header') %>
+<%- include('../../components/header', {
+  services: [
+    'account'
+  ],
+  thirdParty: [
+    '/crypto-js/crypto-js.js'
+  ]
+}) %>
 <%- include('../../components/navbar') %>
 
 <style>
@@ -9,20 +16,28 @@
 
 <div class="container loginContainer">
  <div class="row  justify-content-center">
-  <div class="col col-lg-6 col-md-8 col-xs-12">
+  <div class="col col-lg-4 col-md-8 col-xs-12">
     <div class="card  align-middle">
       <div class="card-body">
         <div class="row">
           <div class="col mb-2">
             <label for="txtEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com">
+            <div class="row">
+              <div class="col col-sm-3">
+                <select class="form-select" aria-label="counntryCode" id="selectCountryCode">
+                </select>
+              </div>
+              <div class="col col-sm-9">
+                <input type="text" class="form-control" id="txtLoginId">
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="row ">
           <div class="col mb-2">
             <label for="txtPassword" class="form-label">Password</label>
-            <input class="form-control" id="txtPassword"></input>
+            <input class="form-control" type="password" id="txtPassword"></input>
           </div>
         </div>
 
@@ -37,5 +52,8 @@
  </div>
 </div>
 
-<%- include('scripts') %>
-<%- include('../../components/footer') %>
+<%- include('../../components/footer', {
+  scripts: [
+    'login/login.js'
+  ]
+}) %>

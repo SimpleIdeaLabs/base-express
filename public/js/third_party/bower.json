@@ -1,0 +1,21 @@
+{
+  "name": "third_party",
+  "homepage": "https://github.com/SimpleIdeaLabs/base-express",
+  "authors": [
+    "Mark Ernest Matute <markernest.matute@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "lodash": "^4.17.21"
+  }
+}

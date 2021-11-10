@@ -8,5 +8,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/config.js"></script>
+    <script src="/js/services/common.js"></script>
+    <script src="/js/services/localStorage.js"></script>
+
+    <!-- third party imports -->
+    <% if (locals.thirdParty && thirdParty.length > 0) { %>
+      <% thirdParty.forEach(function(lib){ %>
+        <script src="/js/third_party/bower_components<%=  lib %>"></script>
+      <% }); %>
+    <% } %>
+
+    <!-- services import -->
+    <% if (locals.services && services.length > 0) { %>
+      <% services.forEach(function(service){ %>
+        <script src="/js/services/<%=  service %>.js"></script>
+      <% }); %>
+    <% } %>
+
   </head>
   <body>

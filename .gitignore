@@ -4,3 +4,4 @@ dist/
 .env
 Close
 public/js/config.js
+public/js/third_party/bower_components

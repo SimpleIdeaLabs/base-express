@@ -1,34 +1,61 @@
+/**
+ * Depends on common service
+ */
 (() => {
-  const btnLogin = $('#btnLogin');
-  const txtEmail = $('#txtEmail');
-  const txtPassword = $('#txtPassword');
 
-  btnLogin.on('click', async () => {
-    const payload = {
-      email: txtEmail.val(),
-      password: txtPassword.val()
-    };
+  // common
+  const selectCountryCode = $('#selectCountryCode');
 
+  // login country codes
+  (async () => {
     try {
-      const res = await $.ajax({
-        url: `${window.apiUrl}/accounts/login`,
-        method: 'POST',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(payload)
+      const countryCodes = await getCountryCodes();
+      countryCodes.map((option) => {
+        selectCountryCode.append(new Option(option.countryCode, option.countryCode));
       });
-
-      const { data: { token } } = res;
-      localStorage.setItem('token', token);
-      window.location.href = '/dashboard';
     } catch (err) {
       Swal.fire({
         title: 'Oops!',
-        text: 'Login Failed',
+        text: 'Fetching country codes failed.',
         icon: 'error',
         confirmButtonText: 'OK'
       });
     }
+  })();
 
-  });
+
+  // button
+  (async () => {
+    const btnLogin = $('#btnLogin');
+    const txtLoginId = $('#txtLoginId');
+    const txtPassword = $('#txtPassword');
+
+    btnLogin.on('click', async () => {
+      const cipherText = CryptoJS.AES.encrypt(txtPassword.val(), window.secretKey);
+      const payload = {
+        loginId: `${selectCountryCode.val()} ${txtLoginId.val()}`,
+        password: cipherText.toString()
+      };
+
+      try {
+        const res = await request2fa(payload);
+
+        if (res.code === 1) {
+          const res = await request2fa(payload);
+          window.location.href = `/accounts/verify-otp?token=${res.value.token}`;
+        }
+
+      } catch (err) {
+        console.log(err);
+        Swal.fire({
+          title: 'Oops!',
+          text: 'Login Failed',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
+
+    });
+  })();
+
 })();
