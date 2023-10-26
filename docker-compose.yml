@@ -1,40 +1,26 @@
 version: '3'
 services:
-  mysql-server:
-    image: mysql:5.7.21
-    container_name: mysql-server
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sample
-    ports:
-      - 3307:3306
-    volumes:
-      - './.data/mysql:/var/lib/mysql'
+  # starter-service:
+  #   container_name: starter-service
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: 'npm run dev'
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - '3000:3000'
+  #     - '9229:9229'
+  #   volumes:
+  #     - ./:/app
+  #     - '/app/node_modules'
 
-  mongo-server:
-    image: 'mongo:4.0'
-    container_name: mongo-server
+  starter-mongo:
+    image: 'mongo:7.0'
+    container_name: starter-mongo
     ports:
       - '27017:27017'
     volumes:
       - './.data/mongo:/data/db'
       - './.data/mongoconfigdb:/data/configdb'
-
-  # Server
-  backend-service:
-    container_name: backend-service
-    build:
-      context: .
-      dockerfile: .Dockerfile
-    command: 'npm run debug'
-    ports:
-      - '3002:3002'
-      - '9229:9229'
-    volumes:
-      - ./:/app
-      - '/app/node_modules'
-    depends_on:
-      - mysql-server
-      - mongo-server
